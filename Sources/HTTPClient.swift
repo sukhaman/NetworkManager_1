@@ -16,6 +16,8 @@ public struct HTTPClient {
         case requestFailed(Error)
         case invalidResponse
     }
+    
+    public init() {}
 
    public func request<T: Decodable>(_ url: URL, decodingType: T.Type) -> AnyPublisher<T, HTTPError> {
         URLSession.shared.dataTaskPublisher(for: url)

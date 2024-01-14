@@ -10,14 +10,14 @@ import Combine
 
 
 @available(iOS 13.0, *)
-struct HTTPClient {
-    enum HTTPError: Error {
+public struct HTTPClient {
+   public enum HTTPError: Error {
         case statusCode(HTTPURLResponse)
         case requestFailed(Error)
         case invalidResponse
     }
 
-    func request<T: Decodable>(_ url: URL, decodingType: T.Type) -> AnyPublisher<T, HTTPError> {
+   public func request<T: Decodable>(_ url: URL, decodingType: T.Type) -> AnyPublisher<T, HTTPError> {
         URLSession.shared.dataTaskPublisher(for: url)
             .tryMap { data, response in
                 guard let httpResponse = response as? HTTPURLResponse else {
